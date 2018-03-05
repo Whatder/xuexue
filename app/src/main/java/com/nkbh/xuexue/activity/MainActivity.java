@@ -1,15 +1,13 @@
 package com.nkbh.xuexue.activity;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.widget.FrameLayout;
+import android.app.Fragment;
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
 import com.nkbh.xuexue.R;
+import com.nkbh.xuexue.base.BaseActivity;
 import com.nkbh.xuexue.fragment.CommunityFragment;
 import com.nkbh.xuexue.fragment.PlanFragment;
 import com.nkbh.xuexue.fragment.StudyFragment;
@@ -18,9 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
 
     @BindView(R.id.bottomNav)
@@ -28,10 +25,12 @@ public class MainActivity extends AppCompatActivity {
     List<Fragment> fragments = new ArrayList<>();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+    protected int getLayoutID() {
+        return R.layout.activity_main;
+    }
+
+    @Override
+    protected void initParameter() {
         fragments.add(new PlanFragment());
         fragments.add(new StudyFragment());
         fragments.add(new CommunityFragment());
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ChangeFragmentView(Fragment fragment) {
-        FragmentManager fm = getSupportFragmentManager();
+        FragmentManager fm = getFragmentManager();
         FragmentTransaction ft = fm.beginTransaction();
         ft.replace(R.id.mainPanel, fragment);
         ft.commit();
