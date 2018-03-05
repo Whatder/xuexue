@@ -1,4 +1,4 @@
-package base;
+package com.nkbh.xuexue.base;
 
 import android.app.Activity;
 import android.os.Bundle;

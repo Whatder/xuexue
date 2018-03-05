@@ -1,13 +1,12 @@
-package activity;
+package com.nkbh.xuexue.activity;
 
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.widget.Button;
 
-import com.nkbh.xuexue.MainActivity;
 import com.nkbh.xuexue.R;
 
-import base.BaseActivity;
+import com.nkbh.xuexue.base.BaseActivity;
 import butterknife.BindView;
 import butterknife.OnClick;
 

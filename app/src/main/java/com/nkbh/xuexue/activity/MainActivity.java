@@ -1,10 +1,11 @@
-package com.nkbh.xuexue;
+package com.nkbh.xuexue.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ashokvarma.bottomnavigation.BottomNavigationBar;
 import com.ashokvarma.bottomnavigation.BottomNavigationItem;
+import com.nkbh.xuexue.R;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
