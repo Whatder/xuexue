@@ -1,8 +1,8 @@
 package com.nkbh.xuexue.base;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
 import com.nkbh.xuexue.R;
@@ -14,7 +14,7 @@ import butterknife.Unbinder;
  * Created by User on 2018/3/3.
  */
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends AppCompatActivity {
     private Unbinder unbinder;
 
     protected abstract int getLayoutID();
