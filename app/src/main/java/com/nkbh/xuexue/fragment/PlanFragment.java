@@ -25,7 +25,7 @@ public class PlanFragment extends BaseFragment {
 
     PlanFragmentAdapter adapter;
     List<Fragment> fragments = new ArrayList<>();
-    String[] titles = {"已完成", "未完成"};
+    String[] titles = {"未完成", "已完成"};
 
     @Override
     protected int getLayoutID() {
@@ -34,8 +34,9 @@ public class PlanFragment extends BaseFragment {
 
     @Override
     protected void initParameter() {
-        fragments.add(new PlanCompletedFragment());
+        fragments.clear();
         fragments.add(new PlanUncompletedFragment());
+        fragments.add(new PlanCompletedFragment());
         adapter = new PlanFragmentAdapter(fragments, titles, getChildFragmentManager());
         viewPagerPlan.setAdapter(adapter);
         tabPlan.setupWithViewPager(viewPagerPlan);
