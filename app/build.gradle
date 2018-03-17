@@ -35,5 +35,6 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     //底部导航栏
     compile 'com.ashokvarma.android:bottom-navigation-bar:2.0.4'
-
+    //圆形头像
+    compile 'de.hdodenhof:circleimageview:2.2.0'
 }
