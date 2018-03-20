@@ -13,34 +13,34 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/ivCoursePic"
-            android:layout_width="170dp"
-            android:layout_height="200dp"
+            android:id="@+id/ivHomeworkPic"
+            android:layout_width="120dp"
+            android:layout_height="140dp"
             android:scaleType="centerCrop" />
 
         <TextView
-            android:id="@+id/tvCourseHeader"
+            android:id="@+id/tvHomeworkHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/ivCoursePic"
+            android:layout_below="@id/ivHomeworkPic"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="10dp"
             android:text="课程标题"
             android:textColor="@color/textBlack"
-            android:textSize="18sp" />
+            android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tvCourseContent"
+            android:id="@+id/tvHomeworkContent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tvCourseHeader"
+            android:layout_below="@id/tvHomeworkHeader"
             android:paddingBottom="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingTop="5dp"
             android:text="课程概述"
             android:textColor="@color/textGrey"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </RelativeLayout>
 </android.support.v7.widget.CardView>
