@@ -54,6 +54,8 @@
         android:layout_below="@id/tvContent"
         android:layout_marginRight="16dp"
         android:layout_toLeftOf="@id/tvComment"
+        android:drawableLeft="@drawable/icon_like"
+        android:drawablePadding="4dp"
         android:text="赞"
         android:textColor="@color/textBlack"
         android:textSize="16sp" />
@@ -64,6 +66,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:layout_below="@id/tvContent"
+        android:drawableLeft="@drawable/icon_reply"
+        android:drawablePadding="4dp"
         android:text="评论"
         android:textColor="@color/textBlack"
         android:textSize="16sp" />
