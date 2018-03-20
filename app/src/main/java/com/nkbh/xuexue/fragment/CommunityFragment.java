@@ -1,5 +1,6 @@
 package com.nkbh.xuexue.fragment;
 
+import android.content.Intent;
 import android.graphics.Rect;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.nkbh.xuexue.R;
+import com.nkbh.xuexue.activity.PostArticleActivity;
 import com.nkbh.xuexue.adapter.CommunityAdapter;
 import com.nkbh.xuexue.base.BaseFragment;
 import com.nkbh.xuexue.base.CommentBean;
@@ -21,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 
 /**
  * Created by User on 2018/3/6.
@@ -71,5 +74,11 @@ public class CommunityFragment extends BaseFragment {
             data.add(temp);
         }
         adapter.notifyDataSetChanged();
+    }
+
+    @OnClick(R.id.fab)
+    void postArticle() {
+        Intent intent = new Intent(mActivity, PostArticleActivity.class);
+        startActivity(intent);
     }
 }
