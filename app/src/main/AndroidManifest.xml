@@ -20,6 +20,8 @@
             android:name=".activity.MainActivity"
             android:theme="@style/Immersive" />
         <activity android:name=".activity.PostArticleActivity" />
+        <activity android:name=".activity.CourseDetailActivity" />
+        <activity android:name=".activity.HomeworkDetailActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
