@@ -16,6 +16,7 @@ import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.CourseDetailActivity;
 import com.nkbh.xuexue.base.CourseBean;
 
+import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;
@@ -41,7 +42,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(mContext).load(data.get(position).getPicUrl()).into(holder.ivCoursePic);
         holder.tvCourseHeader.setText(data.get(position).getTitle());
         holder.tvCourseContent.setText(data.get(position).getContent());
@@ -49,6 +50,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CourseDetailActivity.class);
+                intent.putExtra("data", data.get(position));
                 mContext.startActivity(intent);
             }
         });

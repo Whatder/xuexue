@@ -1,10 +1,12 @@
 package com.nkbh.xuexue.base;
 
+import java.io.Serializable;
+
 /**
  * Created by User on 2018/3/15.
  */
 
-public class CourseBean {
+public class CourseBean implements Serializable {
     String picUrl;
     String title;
     String content;

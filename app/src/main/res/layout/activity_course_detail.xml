@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <RelativeLayout
+        android:id="@+id/rlHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
@@ -26,5 +27,81 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             tools:text="标题" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ivDetailIcon"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="16dp"
+            android:scaleType="centerCrop"
+            tools:src="@drawable/bg_banner" />
+
+        <TextView
+            android:id="@+id/tvDetailTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivDetailIcon"
+            android:textColor="@color/textBlack"
+            android:textSize="18sp"
+            tools:text="标题" />
+
+        <TextView
+            android:id="@+id/tvDetailSummary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tvDetailTitle"
+            android:layout_marginTop="8dp"
+            android:layout_toRightOf="@id/ivDetailIcon"
+            android:textColor="@color/textGrey"
+            android:textSize="16sp"
+            tools:text="简介" />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/ivDetailIcon"
+            android:background="@color/colorPrimary"
+            android:paddingEnd="32dp"
+            android:paddingStart="32dp"
+            android:text="立即播放"
+            android:textColor="@color/white"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp">
+
+        <View
+            android:id="@+id/viewTop"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/colorDivider" />
+
+        <TextView
+            android:id="@+id/tvSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewTop"
+            android:padding="16dp"
+            android:text="这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介这是简介"
+            android:textColor="@color/textBlack"
+            android:textSize="16sp" />
+
+        <View
+            android:id="@+id/viewBottom"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tvSummary"
+            android:background="@color/colorDivider" />
+
     </RelativeLayout>
 </LinearLayout>
