@@ -2,14 +2,17 @@ package com.nkbh.xuexue.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.bean.PlanBean;
+import com.nkbh.xuexue.dialog.PlanDetailDialog;
 
 import java.util.List;
 
@@ -37,13 +40,20 @@ public class PlanItemAdapter extends RecyclerView.Adapter<PlanItemAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvTitle.setText(data.get(position).getTitle());
         holder.tvContent.setText(data.get(position).getContent());
         holder.tvTime.setText(data.get(position).getTime());
         holder.viewStatus.setBackgroundColor(data.get(position).isStatus()
                 ? context.getResources().getColor(R.color.colorGreen)
                 : context.getResources().getColor(R.color.colorAccent));
+        holder.planItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlanDetailDialog dialog = new PlanDetailDialog(context, data.get(position));
+                dialog.show();
+            }
+        });
     }
 
     @Override
@@ -52,6 +62,8 @@ public class PlanItemAdapter extends RecyclerView.Adapter<PlanItemAdapter.ViewHo
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.planItem)
+        CardView planItem;
         @BindView(R.id.viewStatus)
         View viewStatus;
         @BindView(R.id.tvTitle)

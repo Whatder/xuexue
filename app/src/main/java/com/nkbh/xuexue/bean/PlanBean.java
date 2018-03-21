@@ -1,10 +1,12 @@
 package com.nkbh.xuexue.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by User on 2018/3/11.
  */
 
-public class PlanBean {
+public class PlanBean implements Serializable {
     int id;
     String title;
     String content;
