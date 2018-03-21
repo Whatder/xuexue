@@ -1,5 +1,7 @@
 package com.nkbh.xuexue.adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -42,7 +44,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Glide.with(mContext).load(data.get(position).getPicUrl()).into(holder.ivCoursePic);
         holder.tvCourseHeader.setText(data.get(position).getTitle());
         holder.tvCourseContent.setText(data.get(position).getContent());
@@ -51,7 +53,7 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CourseDetailActivity.class);
                 intent.putExtra("data", data.get(position));
-                mContext.startActivity(intent);
+                mContext.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, holder.ivCoursePic, "coursePic").toBundle());
             }
         });
     }

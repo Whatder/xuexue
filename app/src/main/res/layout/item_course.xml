@@ -17,7 +17,8 @@
             android:id="@+id/ivCoursePic"
             android:layout_width="170dp"
             android:layout_height="200dp"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:transitionName="coursePic" />
 
         <TextView
             android:id="@+id/tvCourseHeader"
