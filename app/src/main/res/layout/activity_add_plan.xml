@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:src="@drawable/icon_arrow_left" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/ivBack"
+            android:text="添加计划"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/ivAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:padding="16dp"
+            android:src="@drawable/icon_save" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/rlHeader">
+
+
+        <TextView
+            android:id="@+id/tvTitleTips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="标题"
+            android:textColor="@color/textBlack"
+            android:textSize="18sp" />
+
+        <EditText
+            android:id="@+id/etTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tvTitleTips"
+            android:background="@android:color/transparent"
+            android:padding="16dp"
+            android:textColor="@color/textBlack"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/viewDivider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/etTitle"
+            android:background="@color/colorDivider" />
+
+        <TextView
+            android:id="@+id/tvTimeTips"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewDivider"
+            android:padding="16dp"
+            android:text="时间"
+            android:textColor="@color/textBlack"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tvTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/viewDivider"
+            android:layout_toRightOf="@id/tvTimeTips"
+            android:padding="16dp"
+            android:textColor="@color/textBlack"
+            android:textSize="18sp" />
+
+        <View
+            android:id="@+id/viewDivider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/tvTime"
+            android:background="@color/colorDivider" />
+
+        <EditText
+            android:id="@+id/etContent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/viewDivider2"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:hint="写点计划..."
+            android:padding="16dp"
+            android:textColor="@color/textBlack"
+            android:textColorHint="@color/textGrey"
+            android:textSize="18sp" />
+
+    </RelativeLayout>
+</RelativeLayout>
