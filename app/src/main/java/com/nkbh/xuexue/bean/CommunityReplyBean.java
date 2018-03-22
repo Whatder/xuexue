@@ -1,22 +1,20 @@
-package com.nkbh.xuexue.base;
-
-import java.io.Serializable;
+package com.nkbh.xuexue.bean;
 
 /**
- * Created by User on 2018/3/17.
+ * Created by User on 2018/3/22.
  */
 
-public class CommentBean implements Serializable {
+public class CommunityReplyBean {
     String profilePic;
     String name;
-    String time;
     String content;
+    String time;
 
-    public CommentBean(String profilePic, String name, String time, String content) {
+    public CommunityReplyBean(String profilePic, String name, String content, String time) {
         this.profilePic = profilePic;
         this.name = name;
-        this.time = time;
         this.content = content;
+        this.time = time;
     }
 
     public String getProfilePic() {
@@ -35,19 +33,19 @@ public class CommentBean implements Serializable {
         this.name = name;
     }
 
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
-
     public String getContent() {
         return content;
     }
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

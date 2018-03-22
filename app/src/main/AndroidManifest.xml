@@ -23,6 +23,7 @@
         <activity android:name=".activity.CourseDetailActivity" />
         <activity android:name=".activity.HomeworkDetailActivity" />
         <activity android:name=".activity.AddPlanActivity" />
+        <activity android:name=".activity.CommunityDetailActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

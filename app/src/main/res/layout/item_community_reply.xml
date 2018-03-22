@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingEnd="16dp"
+    android:paddingStart="16dp"
+    android:paddingTop="16dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivReplyPic"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginEnd="8dp"
+        android:src="@color/colorDivider" />
+
+    <TextView
+        android:id="@+id/tvReplyName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/ivReplyPic"
+        android:textColor="@color/textBlack"
+        android:textSize="14sp"
+        tools:text="昵称" />
+
+    <TextView
+        android:id="@+id/tvReplyContent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvReplyName"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@id/ivReplyPic"
+        android:textColor="@color/textBlack"
+        android:textSize="16sp"
+        tools:text="以前没有想过 有一天竟然会怀念那些被公鸡打鸣叫醒的日子" />
+
+    <TextView
+        android:id="@+id/tvReplyTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvReplyContent"
+        android:layout_marginTop="4dp"
+        android:layout_toRightOf="@id/ivReplyPic"
+        android:textColor="@color/textGrey"
+        android:textSize="14sp"
+        tools:text="2018-01-01" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/tvReplyTime"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorDivider" />
+</RelativeLayout>

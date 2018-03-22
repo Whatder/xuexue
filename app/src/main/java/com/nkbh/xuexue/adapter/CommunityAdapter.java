@@ -1,15 +1,18 @@
 package com.nkbh.xuexue.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
+import com.nkbh.xuexue.activity.CommunityDetailActivity;
 import com.nkbh.xuexue.base.CommentBean;
 
 import java.util.List;
@@ -38,11 +41,19 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(mContext).load(data.get(position).getProfilePic()).into(holder.ivProfilePic);
         holder.tvName.setText(data.get(position).getName());
         holder.tvTime.setText(data.get(position).getTime());
         holder.tvContent.setText(data.get(position).getContent());
+        holder.rlItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, CommunityDetailActivity.class);
+                intent.putExtra("data", data.get(position));
+                mContext.startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -52,6 +63,8 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.View
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.rlItem)
+        RelativeLayout rlItem;
         @BindView(R.id.ivProfilePic)
         CircleImageView ivProfilePic;
         @BindView(R.id.tvName)
