@@ -69,7 +69,7 @@ public class StudyFragment extends BaseFragment {
 
     private void getHomeworkData() {
         for (int i = 0; i < 8; i++) {
-            HomeworkBean temp = new HomeworkBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521058060689&di=495ab52ad681d0354713975dc826a7dd&imgtype=0&src=http%3A%2F%2Fimg0.pconline.com.cn%2Fpconline%2F1306%2F09%2F3336552_143T2JU-0.jpg", "开发作业" + (i + 1), "按时完成");
+            HomeworkBean temp = new HomeworkBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720021877&di=a00a5065f2149956b5f65ab0a34b2afa&imgtype=0&src=http%3A%2F%2Fimgsrc.baidu.com%2Fimgad%2Fpic%2Fitem%2F9922720e0cf3d7cac4837d51f91fbe096b63a9a4.jpg", "开发作业" + (i + 1), "按时完成");
             homeworkBeans.add(temp);
         }
         homeworkItemAdapter.notifyDataSetChanged();

@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.PostArticleActivity;
 import com.nkbh.xuexue.adapter.CommunityAdapter;
@@ -53,6 +54,7 @@ public class CommunityFragment extends BaseFragment {
 
     @Override
     protected void initParameter() {
+        Glide.with(this).load("https://timgsa.baidu.com/https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720543080&di=86a94e285ed789196dae98e345724404&imgtype=0&src=http%3A%2F%2Fimg2.downza.cn%2Fsoft%2Fgqbz-554%2F2015-10-16%2F7d611cb8fe436d95760b75549f4aa4fd.jpg").into(ivBanner);
         adapter = new CommunityAdapter(mActivity, data);
         rvCommunity.setLayoutManager(new LinearLayoutManager(mActivity));
         rvCommunity.setAdapter(adapter);
@@ -67,8 +69,8 @@ public class CommunityFragment extends BaseFragment {
 
     private void getData() {
         for (int i = 0; i < 10; i++) {
-            CommentBean temp = new CommentBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521058060689&di=495ab52ad681d0354713975dc826a7dd&imgtype=0&src=http%3A%2F%2Fimg0.pconline.com.cn%2Fpconline%2F1306%2F09%2F3336552_143T2JU-0.jpg",
-                    "用户" + i,
+            CommentBean temp = new CommentBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720096797&di=531b94ad46ce2fdc70b065db0792288a&imgtype=0&src=http%3A%2F%2Ftu.tingclass.net%2Fuploads%2F2015%2F0706%2F20150706024236645.jpg",
+                    "BeckHam" + i,
                     "2018-10-1",
                     "终于毕业要出来工作了，老爸从抽屉里拿出一个箱子，语重心长的说儿啊，二十多年前，我和你妈放弃了国企工作出来创业，从一开始身无分文，然后3000，5000，10000，到后来20万，50万，直到现在，粗略统计应该有500万了！儿啊，这些借据你收好，爸妈这辈子估计还不清了，要靠你了儿子。");
             data.add(temp);

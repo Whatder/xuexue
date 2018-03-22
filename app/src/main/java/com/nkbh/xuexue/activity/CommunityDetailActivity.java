@@ -73,7 +73,7 @@ public class CommunityDetailActivity extends BaseActivity {
 
     private void getData() {
         for (int i = 0; i < 10; i++) {
-            CommunityReplyBean temp = new CommunityReplyBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521058060689&di=495ab52ad681d0354713975dc826a7dd&imgtype=0&src=http%3A%2F%2Fimg0.pconline.com.cn%2Fpconline%2F1306%2F09%2F3336552_143T2JU-0.jpg", "周吹吹", "以前没有想过 有一天竟然会怀念那些被公鸡打鸣叫醒的日子", "2018-01-01");
+            CommunityReplyBean temp = new CommunityReplyBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720129230&di=e020e6bb5a818ea9d535669c635190d5&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D461511789%2C4187442821%26fm%3D214%26gp%3D0.jpg", "肥罗", "以前没有想过 有一天竟然会怀念那些被公鸡打鸣叫醒的日子", "2018-01-01");
             data.add(temp);
         }
         adapter.notifyDataSetChanged();
