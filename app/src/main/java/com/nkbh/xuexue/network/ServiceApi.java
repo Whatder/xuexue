@@ -27,4 +27,8 @@ public interface ServiceApi {
 
     @GET("/plan")
     Observable<ResponseBean<List<PlanBean>>> getPlan(@Query("user_id") int user_id);
+
+    @FormUrlEncoded
+    @POST("/plan/add")
+    Observable<ResponseBean<String>> addPlan(@FieldMap Map<String, String> params);
 }

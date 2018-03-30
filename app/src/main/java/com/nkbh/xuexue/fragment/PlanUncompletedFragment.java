@@ -47,6 +47,12 @@ public class PlanUncompletedFragment extends BaseFragment {
         getData();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData();
+    }
+
     private void getData() {
         ServiceApi service = RetrofitHelper.getService();
         service.getPlan(curUser.getId())
