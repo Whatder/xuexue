@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nkbh.xuexue.R;
@@ -28,10 +27,16 @@ public class PlanItemAdapter extends RecyclerView.Adapter<PlanItemAdapter.ViewHo
 
     private Context context;
     private List<PlanBean> data;
+    private Listener listener;
 
-    public PlanItemAdapter(Context context, List<PlanBean> data) {
+    public PlanItemAdapter(Context context, List<PlanBean> data, Listener listener) {
         this.context = context;
         this.data = data;
+        this.listener = listener;
+    }
+
+    public interface Listener {
+        void onStatusChanged();
     }
 
     @NonNull
@@ -48,13 +53,20 @@ public class PlanItemAdapter extends RecyclerView.Adapter<PlanItemAdapter.ViewHo
         holder.viewStatus.setBackgroundColor("FINISH".equals(data.get(position).getStatus())
                 ? context.getResources().getColor(R.color.colorGreen)
                 : context.getResources().getColor(R.color.colorAccent));
-        holder.planItem.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                PlanDetailDialog dialog = new PlanDetailDialog(context, data.get(position));
-                dialog.show();
-            }
-        });
+
+        if ("UNFINISH".equals(data.get(position).getStatus()))
+            holder.planItem.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    PlanDetailDialog dialog = new PlanDetailDialog(context, data.get(position), new PlanDetailDialog.Listener() {
+                        @Override
+                        public void onStatusChanged() {
+                            listener.onStatusChanged();
+                        }
+                    });
+                    dialog.show();
+                }
+            });
     }
 
     @Override

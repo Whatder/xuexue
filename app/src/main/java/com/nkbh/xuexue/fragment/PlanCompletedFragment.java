@@ -41,7 +41,12 @@ public class PlanCompletedFragment extends BaseFragment {
     @Override
     protected void initParameter() {
         curUser = (UserBean) aCache.getAsObject("user");
-        adapter = new PlanItemAdapter(mActivity, data);
+        adapter = new PlanItemAdapter(mActivity, data, new PlanItemAdapter.Listener() {
+            @Override
+            public void onStatusChanged() {
+                getData();
+            }
+        });
         rvPlan.setLayoutManager(new LinearLayoutManager(mActivity));
         rvPlan.setAdapter(adapter);
         getData();

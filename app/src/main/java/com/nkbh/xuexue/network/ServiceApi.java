@@ -31,4 +31,8 @@ public interface ServiceApi {
     @FormUrlEncoded
     @POST("/plan/add")
     Observable<ResponseBean<String>> addPlan(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("/plan/update")
+    Observable<ResponseBean<String>> updatePlan(@FieldMap Map<String, String> params);
 }
