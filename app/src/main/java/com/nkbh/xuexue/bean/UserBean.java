@@ -1,10 +1,12 @@
 package com.nkbh.xuexue.bean;
 
+import java.io.Serializable;
+
 /**
  * Created by User on 2018/3/29.
  */
 
-public class UserBean {
+public class UserBean implements Serializable {
 
     /**
      * id : 1

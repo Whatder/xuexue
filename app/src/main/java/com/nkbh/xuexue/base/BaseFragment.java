@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nkbh.xuexue.utils.ACache;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -19,12 +21,14 @@ import butterknife.Unbinder;
 public abstract class BaseFragment extends Fragment {
     protected Context mActivity;
     protected View mContentView;
+    protected ACache aCache;
     Unbinder unbinder;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         this.mActivity = getContext();
+        aCache = ACache.get(mActivity);
     }
 
     @Nullable

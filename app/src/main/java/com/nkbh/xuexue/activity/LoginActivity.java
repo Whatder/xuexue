@@ -90,6 +90,7 @@ public class LoginActivity extends BaseActivity {
                         if ("error".equals(userBeanResponseBean.getStatus())) {
                             ToastUtils.show(LoginActivity.this, userBeanResponseBean.getMsg());
                         } else {
+                            aCache.put("user", userBeanResponseBean.getData());
                             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                             startActivity(intent);
                             finish();

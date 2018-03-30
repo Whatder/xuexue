@@ -42,6 +42,6 @@ public class PlanDetailDialog extends Dialog {
         ButterKnife.bind(this);
         tvPlanTitle.setText(mData.getTitle());
         tvPlanContent.setText(mData.getContent());
-        tvPlanTime.setText(mData.getTime());
+        tvPlanTime.setText(mData.getCreate_time()+"");
     }
 }

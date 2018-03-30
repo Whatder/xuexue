@@ -43,8 +43,8 @@ public class PlanItemAdapter extends RecyclerView.Adapter<PlanItemAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvTitle.setText(data.get(position).getTitle());
         holder.tvContent.setText(data.get(position).getContent());
-        holder.tvTime.setText(data.get(position).getTime());
-        holder.viewStatus.setBackgroundColor(data.get(position).isStatus()
+        holder.tvTime.setText("" + data.get(position).getCreate_time());
+        holder.viewStatus.setBackgroundColor("FINISH".equals(data.get(position).getStatus())
                 ? context.getResources().getColor(R.color.colorGreen)
                 : context.getResources().getColor(R.color.colorAccent));
         holder.planItem.setOnClickListener(new View.OnClickListener() {
