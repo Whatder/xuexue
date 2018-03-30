@@ -16,4 +16,17 @@ public class TimeUtils {
         time = simpleDateFormat.format(new Date(stamp * 1000));
         return time;
     }
+
+    public static long string2Stamp(String timeStr) {
+        long stamp = 0;
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        Date date;
+        try {
+            date = simpleDateFormat.parse(timeStr);
+            stamp = date.getTime() / 1000;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return stamp;
+    }
 }
