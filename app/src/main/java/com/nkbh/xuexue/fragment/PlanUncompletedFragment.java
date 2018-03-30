@@ -61,7 +61,10 @@ public class PlanUncompletedFragment extends BaseFragment {
                     @Override
                     public void onNext(ResponseBean<List<PlanBean>> value) {
                         if ("succ".equals(value.getStatus())) {
-                            data.addAll(value.getData());
+                            for (PlanBean bean : value.getData()) {
+                                if ("UNFINISH".equals(bean.getStatus()))
+                                    data.add(bean);
+                            }
                             adapter.notifyDataSetChanged();
                         } else {
                             ToastUtils.show(mActivity, value.getMsg());
