@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.bean.PlanBean;
 import com.nkbh.xuexue.dialog.PlanDetailDialog;
+import com.nkbh.xuexue.utils.TimeUtils;
 
 import java.util.List;
 
@@ -43,7 +44,7 @@ public class PlanItemAdapter extends RecyclerView.Adapter<PlanItemAdapter.ViewHo
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.tvTitle.setText(data.get(position).getTitle());
         holder.tvContent.setText(data.get(position).getContent());
-        holder.tvTime.setText("" + data.get(position).getCreate_time());
+        holder.tvTime.setText(TimeUtils.stamp2String(data.get(position).getCreate_time()));
         holder.viewStatus.setBackgroundColor("FINISH".equals(data.get(position).getStatus())
                 ? context.getResources().getColor(R.color.colorGreen)
                 : context.getResources().getColor(R.color.colorAccent));

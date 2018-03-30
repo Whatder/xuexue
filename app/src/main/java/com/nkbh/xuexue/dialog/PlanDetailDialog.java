@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.bean.PlanBean;
+import com.nkbh.xuexue.utils.TimeUtils;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -42,6 +43,6 @@ public class PlanDetailDialog extends Dialog {
         ButterKnife.bind(this);
         tvPlanTitle.setText(mData.getTitle());
         tvPlanContent.setText(mData.getContent());
-        tvPlanTime.setText(mData.getCreate_time()+"");
+        tvPlanTime.setText(TimeUtils.stamp2String(mData.getCreate_time()));
     }
 }

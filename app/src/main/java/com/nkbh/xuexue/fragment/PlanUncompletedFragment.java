@@ -61,6 +61,7 @@ public class PlanUncompletedFragment extends BaseFragment {
                     @Override
                     public void onNext(ResponseBean<List<PlanBean>> value) {
                         if ("succ".equals(value.getStatus())) {
+                            data.clear();
                             for (PlanBean bean : value.getData()) {
                                 if ("UNFINISH".equals(bean.getStatus()))
                                     data.add(bean);
