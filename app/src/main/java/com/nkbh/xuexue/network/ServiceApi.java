@@ -41,6 +41,10 @@ public interface ServiceApi {
     @GET("/topic")
     Observable<ResponseBean<List<TopicBean>>> getTopic();
 
+    @FormUrlEncoded
+    @POST("/topic/add")
+    Observable<ResponseBean<String>> addTopic(@FieldMap Map<String, String> params);
+
     @GET("/reply")
     Observable<ResponseBean<List<CommunityReplyBean>>> getReplyById(@Query("topic_id") int topic_id);
 

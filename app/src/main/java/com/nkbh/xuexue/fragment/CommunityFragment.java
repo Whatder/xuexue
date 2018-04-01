@@ -81,6 +81,18 @@ public class CommunityFragment extends BaseFragment {
         initRefresh();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData(null);
+    }
+
+    @OnClick(R.id.fab)
+    void postArticle() {
+        Intent intent = new Intent(mActivity, PostArticleActivity.class);
+        startActivity(intent);
+    }
+
     private void getData(final RefreshLayout refreshLayout) {
         ServiceApi service = RetrofitHelper.getService();
         service.getTopic()
@@ -117,12 +129,6 @@ public class CommunityFragment extends BaseFragment {
 
                     }
                 });
-    }
-
-    @OnClick(R.id.fab)
-    void postArticle() {
-        Intent intent = new Intent(mActivity, PostArticleActivity.class);
-        startActivity(intent);
     }
 
     private void initRefresh() {
