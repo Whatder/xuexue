@@ -2,6 +2,7 @@ package com.nkbh.xuexue.fragment;
 
 import android.content.Intent;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -22,6 +23,9 @@ import com.nkbh.xuexue.network.RetrofitHelper;
 import com.nkbh.xuexue.network.ServiceApi;
 import com.nkbh.xuexue.utils.DmUtils;
 import com.nkbh.xuexue.utils.ToastUtils;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +57,8 @@ public class CommunityFragment extends BaseFragment {
 
     List<TopicBean> data = new ArrayList<>();
     TopicAdapter adapter;
+    @BindView(R.id.refreshLayout)
+    SmartRefreshLayout refreshLayout;
 
     @Override
     protected int getLayoutID() {
@@ -71,10 +77,11 @@ public class CommunityFragment extends BaseFragment {
                 outRect.bottom = DmUtils.dp2px(mActivity, 10);
             }
         });
-        getData();
+        getData(null);
+        initRefresh();
     }
 
-    private void getData() {
+    private void getData(final RefreshLayout refreshLayout) {
         ServiceApi service = RetrofitHelper.getService();
         service.getTopic()
                 .subscribeOn(Schedulers.io())
@@ -94,11 +101,15 @@ public class CommunityFragment extends BaseFragment {
                         } else {
                             ToastUtils.show(mActivity, value.getMsg());
                         }
+                        if (refreshLayout != null)
+                            refreshLayout.finishRefresh();
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        ToastUtils.show(mActivity, e.getMessage());
+                        if (refreshLayout != null)
+                            refreshLayout.finishRefresh();
                     }
 
                     @Override
@@ -112,5 +123,14 @@ public class CommunityFragment extends BaseFragment {
     void postArticle() {
         Intent intent = new Intent(mActivity, PostArticleActivity.class);
         startActivity(intent);
+    }
+
+    private void initRefresh() {
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                getData(refreshLayout);
+            }
+        });
     }
 }
