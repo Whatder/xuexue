@@ -1,5 +1,7 @@
 package com.nkbh.xuexue.activity;
 
+import android.content.Intent;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
@@ -50,6 +52,8 @@ public class CommunityDetailActivity extends BaseActivity {
     TextView tvContent;
     @BindView(R.id.rvReply)
     RecyclerView rvReply;
+    @BindView(R.id.fabAddReply)
+    FloatingActionButton fabAddReply;
 
     CommunityReplyAdapter adapter;
     List<CommunityReplyBean> data = new ArrayList<>();
@@ -80,13 +84,13 @@ public class CommunityDetailActivity extends BaseActivity {
         getData();
     }
 
-    private void getData() {
-//        for (int i = 0; i < 10; i++) {
-//            CommunityReplyBean temp = new CommunityReplyBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720129230&di=e020e6bb5a818ea9d535669c635190d5&imgtype=jpg&src=http%3A%2F%2Fimg4.imgtn.bdimg.com%2Fit%2Fu%3D461511789%2C4187442821%26fm%3D214%26gp%3D0.jpg", "肥罗", "以前没有想过 有一天竟然会怀念那些被公鸡打鸣叫醒的日子", "2018-01-01");
-//            data.add(temp);
-//        }
-//        adapter.notifyDataSetChanged();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        getData();
+    }
 
+    private void getData() {
         ServiceApi service = RetrofitHelper.getService();
         service.getReplyById(currentTopic.getId())
                 .subscribeOn(Schedulers.io())
@@ -124,5 +128,12 @@ public class CommunityDetailActivity extends BaseActivity {
     @OnClick(R.id.ivBack)
     void back() {
         finish();
+    }
+
+    @OnClick(R.id.fabAddReply)
+    void onAddReply() {
+        Intent intent = new Intent(CommunityDetailActivity.this, PostReplyActivity.class);
+        intent.putExtra("topic", currentTopic);
+        startActivity(intent);
     }
 }

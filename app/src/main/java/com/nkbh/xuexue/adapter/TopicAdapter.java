@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.CommunityDetailActivity;
+import com.nkbh.xuexue.activity.PostReplyActivity;
 import com.nkbh.xuexue.base.TopicBean;
 import com.nkbh.xuexue.utils.TimeUtils;
 
@@ -65,6 +66,14 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
             @Override
             public void onClick(View view) {
                 onClickLike.onLike(data.get(position).getId(), position);
+            }
+        });
+        holder.tvComment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mContext, PostReplyActivity.class);
+                intent.putExtra("topic", data.get(position));
+                mContext.startActivity(intent);
             }
         });
     }

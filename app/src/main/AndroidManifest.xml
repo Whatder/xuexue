@@ -24,6 +24,7 @@
         <activity android:name=".activity.HomeworkDetailActivity" />
         <activity android:name=".activity.AddPlanActivity" />
         <activity android:name=".activity.CommunityDetailActivity" />
+        <activity android:name=".activity.PostReplyActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
