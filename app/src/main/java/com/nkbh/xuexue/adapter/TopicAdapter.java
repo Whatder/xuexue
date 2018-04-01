@@ -22,6 +22,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**
@@ -31,10 +32,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> {
     private Context mContext;
     private List<TopicBean> data;
+    private onClickLike onClickLike;
 
-    public TopicAdapter(Context mContext, List<TopicBean> data) {
+    public TopicAdapter(Context mContext, List<TopicBean> data, onClickLike onClickLike) {
         this.mContext = mContext;
         this.data = data;
+        this.onClickLike = onClickLike;
     }
 
     @NonNull
@@ -58,6 +61,12 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
                 mContext.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, holder.rlItem, "topicLayout").toBundle());
             }
         });
+        holder.tvLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onClickLike.onLike(data.get(position).getId(), position);
+            }
+        });
     }
 
     @Override
@@ -65,6 +74,10 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         return data.size();
     }
 
+    public void onLikeCountAdd(int position) {
+        data.get(position).setLike_count(data.get(position).getLike_count() + 1);
+        notifyDataSetChanged();
+    }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         @BindView(R.id.rlItem)
@@ -88,5 +101,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
         }
     }
 
-
+    public interface onClickLike {
+        void onLike(int topic_id, int position);
+    }
 }

@@ -28,7 +28,9 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -68,7 +70,12 @@ public class CommunityFragment extends BaseFragment {
     @Override
     protected void initParameter() {
         Glide.with(this).load("https://timgsa.baidu.com/https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720543080&di=86a94e285ed789196dae98e345724404&imgtype=0&src=http%3A%2F%2Fimg2.downza.cn%2Fsoft%2Fgqbz-554%2F2015-10-16%2F7d611cb8fe436d95760b75549f4aa4fd.jpg").into(ivBanner);
-        adapter = new TopicAdapter(mActivity, data);
+        adapter = new TopicAdapter(mActivity, data, new TopicAdapter.onClickLike() {
+            @Override
+            public void onLike(int topic_id, int position) {
+                likeTopic(topic_id, position);
+            }
+        });
         rvCommunity.setLayoutManager(new LinearLayoutManager(mActivity));
         rvCommunity.setAdapter(adapter);
         rvCommunity.addItemDecoration(new RecyclerView.ItemDecoration() {
@@ -91,6 +98,15 @@ public class CommunityFragment extends BaseFragment {
     void postArticle() {
         Intent intent = new Intent(mActivity, PostArticleActivity.class);
         startActivity(intent);
+    }
+
+    private void initRefresh() {
+        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
+                getData(refreshLayout);
+            }
+        });
     }
 
     private void getData(final RefreshLayout refreshLayout) {
@@ -131,12 +147,37 @@ public class CommunityFragment extends BaseFragment {
                 });
     }
 
-    private void initRefresh() {
-        refreshLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh(@NonNull RefreshLayout refreshLayout) {
-                getData(refreshLayout);
-            }
-        });
+    private void likeTopic(int topic_id, final int position) {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", topic_id + "");
+        ServiceApi service = RetrofitHelper.getService();
+        service.likeTopic(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBean<String> value) {
+                        if ("succ".equals(value.getStatus())) {
+                            ToastUtils.show(mActivity, value.getData());
+                            adapter.onLikeCountAdd(position);
+                        } else
+                            ToastUtils.show(mActivity, value.getMsg());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtils.show(mActivity, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }
