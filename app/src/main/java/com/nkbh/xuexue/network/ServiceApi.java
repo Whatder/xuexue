@@ -1,6 +1,7 @@
 package com.nkbh.xuexue.network;
 
 import com.nkbh.xuexue.base.TopicBean;
+import com.nkbh.xuexue.bean.CommunityReplyBean;
 import com.nkbh.xuexue.bean.PlanBean;
 import com.nkbh.xuexue.bean.ResponseBean;
 import com.nkbh.xuexue.bean.UserBean;
@@ -39,5 +40,8 @@ public interface ServiceApi {
 
     @GET("/topic")
     Observable<ResponseBean<List<TopicBean>>> getTopic();
+
+    @GET("/reply")
+    Observable<ResponseBean<List<CommunityReplyBean>>> getReplyById(@Query("topic_id") int topic_id);
 
 }

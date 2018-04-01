@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.bean.CommunityReplyBean;
+import com.nkbh.xuexue.utils.TimeUtils;
 
 import java.util.List;
 
@@ -40,10 +41,10 @@ public class CommunityReplyAdapter extends RecyclerView.Adapter<CommunityReplyAd
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Glide.with(mContext).load(data.get(position).getProfilePic()).into(holder.ivReplyPic);
+        Glide.with(mContext).load(data.get(position).getProfile_pic()).into(holder.ivReplyPic);
         holder.tvReplyName.setText(data.get(position).getName());
         holder.tvReplyContent.setText(data.get(position).getContent());
-        holder.tvReplyTime.setText(data.get(position).getTime());
+        holder.tvReplyTime.setText(TimeUtils.stamp2String(data.get(position).getCreate_time()));
     }
 
     @Override
