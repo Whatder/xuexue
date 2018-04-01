@@ -13,7 +13,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.CommunityDetailActivity;
-import com.nkbh.xuexue.base.CommentBean;
+import com.nkbh.xuexue.base.TopicBean;
+import com.nkbh.xuexue.utils.TimeUtils;
 
 import java.util.List;
 
@@ -25,11 +26,11 @@ import de.hdodenhof.circleimageview.CircleImageView;
  * Created by User on 2018/3/17.
  */
 
-public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.ViewHolder> {
+public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> {
     private Context mContext;
-    private List<CommentBean> data;
+    private List<TopicBean> data;
 
-    public CommunityAdapter(Context mContext, List<CommentBean> data) {
+    public TopicAdapter(Context mContext, List<TopicBean> data) {
         this.mContext = mContext;
         this.data = data;
     }
@@ -42,10 +43,11 @@ public class CommunityAdapter extends RecyclerView.Adapter<CommunityAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        Glide.with(mContext).load(data.get(position).getProfilePic()).into(holder.ivProfilePic);
+        Glide.with(mContext).load(data.get(position).getProfile_pic()).into(holder.ivProfilePic);
         holder.tvName.setText(data.get(position).getName());
-        holder.tvTime.setText(data.get(position).getTime());
+        holder.tvTime.setText(TimeUtils.stamp2String(data.get(position).getCreate_time()));
         holder.tvContent.setText(data.get(position).getContent());
+        holder.tvLike.setText("赞(" + data.get(position).getLike_count() + ")");
         holder.rlItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

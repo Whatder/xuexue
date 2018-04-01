@@ -1,5 +1,6 @@
 package com.nkbh.xuexue.network;
 
+import com.nkbh.xuexue.base.TopicBean;
 import com.nkbh.xuexue.bean.PlanBean;
 import com.nkbh.xuexue.bean.ResponseBean;
 import com.nkbh.xuexue.bean.UserBean;
@@ -35,4 +36,8 @@ public interface ServiceApi {
     @FormUrlEncoded
     @POST("/plan/update")
     Observable<ResponseBean<String>> updatePlan(@FieldMap Map<String, String> params);
+
+    @GET("/topic")
+    Observable<ResponseBean<List<TopicBean>>> getTopic();
+
 }

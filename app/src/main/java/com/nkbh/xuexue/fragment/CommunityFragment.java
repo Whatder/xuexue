@@ -5,7 +5,6 @@ import android.graphics.Rect;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -15,16 +14,24 @@ import android.widget.ImageView;
 import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.PostArticleActivity;
-import com.nkbh.xuexue.adapter.CommunityAdapter;
+import com.nkbh.xuexue.adapter.TopicAdapter;
 import com.nkbh.xuexue.base.BaseFragment;
-import com.nkbh.xuexue.base.CommentBean;
+import com.nkbh.xuexue.base.TopicBean;
+import com.nkbh.xuexue.bean.ResponseBean;
+import com.nkbh.xuexue.network.RetrofitHelper;
+import com.nkbh.xuexue.network.ServiceApi;
 import com.nkbh.xuexue.utils.DmUtils;
+import com.nkbh.xuexue.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by User on 2018/3/6.
@@ -44,8 +51,8 @@ public class CommunityFragment extends BaseFragment {
     @BindView(R.id.fab)
     FloatingActionButton fab;
 
-    List<CommentBean> data = new ArrayList<>();
-    CommunityAdapter adapter;
+    List<TopicBean> data = new ArrayList<>();
+    TopicAdapter adapter;
 
     @Override
     protected int getLayoutID() {
@@ -55,7 +62,7 @@ public class CommunityFragment extends BaseFragment {
     @Override
     protected void initParameter() {
         Glide.with(this).load("https://timgsa.baidu.com/https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720543080&di=86a94e285ed789196dae98e345724404&imgtype=0&src=http%3A%2F%2Fimg2.downza.cn%2Fsoft%2Fgqbz-554%2F2015-10-16%2F7d611cb8fe436d95760b75549f4aa4fd.jpg").into(ivBanner);
-        adapter = new CommunityAdapter(mActivity, data);
+        adapter = new TopicAdapter(mActivity, data);
         rvCommunity.setLayoutManager(new LinearLayoutManager(mActivity));
         rvCommunity.setAdapter(adapter);
         rvCommunity.addItemDecoration(new RecyclerView.ItemDecoration() {
@@ -68,14 +75,37 @@ public class CommunityFragment extends BaseFragment {
     }
 
     private void getData() {
-        for (int i = 0; i < 10; i++) {
-            CommentBean temp = new CommentBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720096797&di=531b94ad46ce2fdc70b065db0792288a&imgtype=0&src=http%3A%2F%2Ftu.tingclass.net%2Fuploads%2F2015%2F0706%2F20150706024236645.jpg",
-                    "BeckHam" + i,
-                    "2018-10-1",
-                    "终于毕业要出来工作了，老爸从抽屉里拿出一个箱子，语重心长的说儿啊，二十多年前，我和你妈放弃了国企工作出来创业，从一开始身无分文，然后3000，5000，10000，到后来20万，50万，直到现在，粗略统计应该有500万了！儿啊，这些借据你收好，爸妈这辈子估计还不清了，要靠你了儿子。");
-            data.add(temp);
-        }
-        adapter.notifyDataSetChanged();
+        ServiceApi service = RetrofitHelper.getService();
+        service.getTopic()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBean<List<TopicBean>>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBean<List<TopicBean>> value) {
+                        if ("succ".equals(value.getStatus())) {
+                            data.clear();
+                            data.addAll(value.getData());
+                            adapter.notifyDataSetChanged();
+                        } else {
+                            ToastUtils.show(mActivity, value.getMsg());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
     @OnClick(R.id.fab)

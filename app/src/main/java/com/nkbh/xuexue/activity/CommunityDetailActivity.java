@@ -10,8 +10,9 @@ import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.adapter.CommunityReplyAdapter;
 import com.nkbh.xuexue.base.BaseActivity;
-import com.nkbh.xuexue.base.CommentBean;
+import com.nkbh.xuexue.base.TopicBean;
 import com.nkbh.xuexue.bean.CommunityReplyBean;
+import com.nkbh.xuexue.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +45,7 @@ public class CommunityDetailActivity extends BaseActivity {
 
     CommunityReplyAdapter adapter;
     List<CommunityReplyBean> data = new ArrayList<>();
-    CommentBean currentTheme;
+    TopicBean currentTopic;
 
     @Override
     protected int getLayoutID() {
@@ -53,15 +54,15 @@ public class CommunityDetailActivity extends BaseActivity {
 
     @Override
     protected void initParameter() {
-        currentTheme = (CommentBean) getIntent().getSerializableExtra("data");
-        if (currentTheme == null)
+        currentTopic = (TopicBean) getIntent().getSerializableExtra("data");
+        if (currentTopic == null)
             finish();
         tvTitle.setText("详情");
 
-        Glide.with(this).load(currentTheme.getProfilePic()).into(ivProfilePic);
-        tvName.setText(currentTheme.getName());
-        tvTime.setText(currentTheme.getTime());
-        tvContent.setText(currentTheme.getContent());
+        Glide.with(this).load(currentTopic.getProfile_pic()).into(ivProfilePic);
+        tvName.setText(currentTopic.getName());
+        tvTime.setText(TimeUtils.stamp2String(currentTopic.getCreate_time()));
+        tvContent.setText(currentTopic.getContent());
 
         adapter = new CommunityReplyAdapter(this, data);
         rvReply.setLayoutManager(new LinearLayoutManager(this));
