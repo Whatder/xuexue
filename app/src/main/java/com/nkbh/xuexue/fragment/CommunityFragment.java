@@ -19,6 +19,7 @@ import com.nkbh.xuexue.adapter.TopicAdapter;
 import com.nkbh.xuexue.base.BaseFragment;
 import com.nkbh.xuexue.base.TopicBean;
 import com.nkbh.xuexue.bean.ResponseBean;
+import com.nkbh.xuexue.bean.UserBean;
 import com.nkbh.xuexue.network.RetrofitHelper;
 import com.nkbh.xuexue.network.ServiceApi;
 import com.nkbh.xuexue.utils.DmUtils;
@@ -61,6 +62,7 @@ public class CommunityFragment extends BaseFragment {
     TopicAdapter adapter;
     @BindView(R.id.refreshLayout)
     SmartRefreshLayout refreshLayout;
+    UserBean currUser;
 
     @Override
     protected int getLayoutID() {
@@ -69,7 +71,8 @@ public class CommunityFragment extends BaseFragment {
 
     @Override
     protected void initParameter() {
-        Glide.with(this).load("https://timgsa.baidu.com/https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521720543080&di=86a94e285ed789196dae98e345724404&imgtype=0&src=http%3A%2F%2Fimg2.downza.cn%2Fsoft%2Fgqbz-554%2F2015-10-16%2F7d611cb8fe436d95760b75549f4aa4fd.jpg").into(ivBanner);
+        currUser = (UserBean) aCache.getAsObject("user");
+        Glide.with(this).load(currUser.getProfile_pic()).into(ivBanner);
         adapter = new TopicAdapter(mActivity, data, new TopicAdapter.onClickLike() {
             @Override
             public void onLike(int topic_id, int position) {
