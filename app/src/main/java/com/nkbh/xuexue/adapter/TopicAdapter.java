@@ -1,5 +1,7 @@
 package com.nkbh.xuexue.adapter;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
@@ -42,7 +44,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
+    public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
         Glide.with(mContext).load(data.get(position).getProfile_pic()).into(holder.ivProfilePic);
         holder.tvName.setText(data.get(position).getName());
         holder.tvTime.setText(TimeUtils.stamp2String(data.get(position).getCreate_time()));
@@ -53,7 +55,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.ViewHolder> 
             public void onClick(View view) {
                 Intent intent = new Intent(mContext, CommunityDetailActivity.class);
                 intent.putExtra("data", data.get(position));
-                mContext.startActivity(intent);
+                mContext.startActivity(intent, ActivityOptions.makeSceneTransitionAnimation((Activity) mContext, holder.rlItem, "topicLayout").toBundle());
             }
         });
     }
