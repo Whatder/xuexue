@@ -3,10 +3,8 @@ package com.nkbh.xuexue.activity;
 import android.content.Intent;
 import android.support.design.widget.TextInputEditText;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.nkbh.xuexue.R;
-
 import com.nkbh.xuexue.base.BaseActivity;
 import com.nkbh.xuexue.bean.ResponseBean;
 import com.nkbh.xuexue.bean.UserBean;
@@ -24,7 +22,6 @@ import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
-import rx.Subscriber;
 
 /**
  * Created by User on 2018/3/3.
@@ -50,9 +47,6 @@ public class LoginActivity extends BaseActivity {
 
     @OnClick(R.id.btnLogin)
     void login() {
-//        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//        startActivity(intent);
-//        finish();
         String account = etUserName.getText().toString().trim();
         String password = etPassword.getText().toString().trim();
         if (StringUtils.isNotBlank(account) || StringUtils.isNotBlank(password))
@@ -62,6 +56,7 @@ public class LoginActivity extends BaseActivity {
     }
 
     private void validateLogin(String account, String password) {
+        loadingDialog.show();
         Map<String, String> params = new HashMap<>();
         params.put("account", account);
         params.put("password", password);
@@ -72,6 +67,7 @@ public class LoginActivity extends BaseActivity {
                 .subscribe(new Observer<ResponseBean<UserBean>>() {
                     @Override
                     public void onError(Throwable e) {
+                        loadingDialog.dismiss();
                         ToastUtils.show(LoginActivity.this, e.getMessage());
                     }
 
@@ -87,6 +83,7 @@ public class LoginActivity extends BaseActivity {
 
                     @Override
                     public void onNext(ResponseBean<UserBean> userBeanResponseBean) {
+                        loadingDialog.dismiss();
                         if ("error".equals(userBeanResponseBean.getStatus())) {
                             ToastUtils.show(LoginActivity.this, userBeanResponseBean.getMsg());
                         } else {

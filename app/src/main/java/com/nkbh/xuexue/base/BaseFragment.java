@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.nkbh.xuexue.dialog.LoadingDialog;
 import com.nkbh.xuexue.utils.ACache;
 
 import butterknife.ButterKnife;
@@ -22,6 +23,7 @@ public abstract class BaseFragment extends Fragment {
     protected Context mActivity;
     protected View mContentView;
     protected ACache aCache;
+    protected LoadingDialog loadingDialog;
     Unbinder unbinder;
 
     @Override
@@ -29,6 +31,7 @@ public abstract class BaseFragment extends Fragment {
         super.onAttach(context);
         this.mActivity = getContext();
         aCache = ACache.get(mActivity);
+        loadingDialog = new LoadingDialog(mActivity);
     }
 
     @Nullable
