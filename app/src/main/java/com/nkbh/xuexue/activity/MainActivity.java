@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -28,6 +29,7 @@ import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.base.BaseActivity;
 import com.nkbh.xuexue.bean.ResponseBean;
 import com.nkbh.xuexue.bean.UserBean;
+import com.nkbh.xuexue.dialog.ChangePwdDialog;
 import com.nkbh.xuexue.fragment.CommunityFragment;
 import com.nkbh.xuexue.fragment.PlanFragment;
 import com.nkbh.xuexue.fragment.StudyFragment;
@@ -165,6 +167,17 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.tvChangeName)
     void changeName() {
 
+    }
+
+    @OnClick(R.id.tvChangePwd)
+    void changePwd() {
+        ChangePwdDialog dialog = new ChangePwdDialog(MainActivity.this, currentUser);
+        dialog.show();
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.width = (int) (display.getWidth() * 0.9); //设置宽度
+        dialog.getWindow().setAttributes(lp);
     }
 
     @OnClick(R.id.tvLogOut)

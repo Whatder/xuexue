@@ -31,6 +31,14 @@ public interface ServiceApi {
     @POST("/user/login")
     Observable<ResponseBean<UserBean>> login(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("/user/password")
+    Observable<ResponseBean<String>> changePwd(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("/user/name")
+    Observable<ResponseBean<String>> changeName(@FieldMap Map<String, String> params);
+
     @GET("/plan")
     Observable<ResponseBean<List<PlanBean>>> getPlan(@Query("user_id") int user_id);
 
