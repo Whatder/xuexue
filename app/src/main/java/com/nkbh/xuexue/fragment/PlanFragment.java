@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.AddPlanActivity;
+import com.nkbh.xuexue.activity.MainActivity;
 import com.nkbh.xuexue.adapter.PlanFragmentAdapter;
 import com.nkbh.xuexue.base.BaseFragment;
 
@@ -53,6 +54,11 @@ public class PlanFragment extends BaseFragment {
     void add() {
         Intent intent = new Intent(mActivity, AddPlanActivity.class);
         mActivity.startActivity(intent);
+    }
+
+    @OnClick(R.id.toolBarTitle)
+    void openMenu() {
+        ((MainActivity) mActivity).openMenu();
     }
 
 }

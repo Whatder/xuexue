@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.nkbh.xuexue.R;
+import com.nkbh.xuexue.activity.MainActivity;
 import com.nkbh.xuexue.adapter.CourseItemAdapter;
 import com.nkbh.xuexue.adapter.HomeworkItemAdapter;
 import com.nkbh.xuexue.base.BaseFragment;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
+import butterknife.OnClick;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -67,13 +69,6 @@ public class StudyFragment extends BaseFragment {
     }
 
     private void getCourseData() {
-//        courseBeans.clear();
-//        for (int i = 0; i < 5; i++) {
-//            CourseBean temp = new CourseBean("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1521058060689&di=495ab52ad681d0354713975dc826a7dd&imgtype=0&src=http%3A%2F%2Fimg0.pconline.com.cn%2Fpconline%2F1306%2F09%2F3336552_143T2JU-0.jpg", "Android开发" + (i + 1), "开发的艺术");
-//            courseBeans.add(temp);
-//        }
-//        courseItemAdapter.notifyDataSetChanged();
-
         ServiceApi service = RetrofitHelper.getService();
         service.getAllMovies()
                 .subscribeOn(Schedulers.io())
@@ -113,5 +108,10 @@ public class StudyFragment extends BaseFragment {
         }
         homeworkItemAdapter.notifyDataSetChanged();
 
+    }
+
+    @OnClick(R.id.toolBarTitle)
+    void openMenu() {
+        ((MainActivity) mActivity).openMenu();
     }
 }
