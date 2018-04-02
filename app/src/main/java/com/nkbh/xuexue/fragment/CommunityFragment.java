@@ -81,12 +81,6 @@ public class CommunityFragment extends BaseFragment {
         });
         rvCommunity.setLayoutManager(new LinearLayoutManager(mActivity));
         rvCommunity.setAdapter(adapter);
-        rvCommunity.addItemDecoration(new RecyclerView.ItemDecoration() {
-            @Override
-            public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-                outRect.bottom = DmUtils.dp2px(mActivity, 10);
-            }
-        });
         getData(null);
         initRefresh();
     }
