@@ -45,9 +45,9 @@ public class CourseItemAdapter extends RecyclerView.Adapter<CourseItemAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull final ViewHolder holder, final int position) {
-        Glide.with(mContext).load(data.get(position).getPicUrl()).into(holder.ivCoursePic);
+        Glide.with(mContext).load(data.get(position).getThumbnail()).into(holder.ivCoursePic);
         holder.tvCourseHeader.setText(data.get(position).getTitle());
-        holder.tvCourseContent.setText(data.get(position).getContent());
+        holder.tvCourseContent.setText(data.get(position).getSummary());
         holder.rlCourseItem.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

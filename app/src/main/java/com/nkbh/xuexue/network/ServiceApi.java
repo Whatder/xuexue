@@ -1,5 +1,6 @@
 package com.nkbh.xuexue.network;
 
+import com.nkbh.xuexue.base.CourseBean;
 import com.nkbh.xuexue.base.TopicBean;
 import com.nkbh.xuexue.bean.CommunityReplyBean;
 import com.nkbh.xuexue.bean.PlanBean;
@@ -56,4 +57,6 @@ public interface ServiceApi {
     @POST("/reply/add")
     Observable<ResponseBean<String>> addReply(@FieldMap Map<String, String> params);
 
+    @GET("/movie/all")
+    Observable<ResponseBean<List<CourseBean>>> getAllMovies();
 }

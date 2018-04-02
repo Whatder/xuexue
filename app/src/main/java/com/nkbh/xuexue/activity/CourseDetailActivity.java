@@ -1,6 +1,5 @@
 package com.nkbh.xuexue.activity;
 
-import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,8 +9,9 @@ import com.nkbh.xuexue.base.BaseActivity;
 import com.nkbh.xuexue.base.CourseBean;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.jzvd.JZVideoPlayer;
+import cn.jzvd.JZVideoPlayerStandard;
 
 /**
  * Created by User on 2018/3/21.
@@ -30,10 +30,11 @@ public class CourseDetailActivity extends BaseActivity {
     ImageView ivDetailIcon;
     @BindView(R.id.tvDetailTitle)
     TextView tvDetailTitle;
-    @BindView(R.id.tvDetailSummary)
-    TextView tvDetailSummary;
+
     @BindView(R.id.tvSummary)
     TextView tvSummary;
+    @BindView(R.id.jzPlayer)
+    JZVideoPlayerStandard jzPlayer;
 
     @Override
     protected int getLayoutID() {
@@ -46,14 +47,31 @@ public class CourseDetailActivity extends BaseActivity {
         if (data == null)
             finish();
 
-        Glide.with(this).load(data.getPicUrl()).into(ivDetailIcon);
+        Glide.with(this).load(data.getThumbnail()).into(ivDetailIcon);
         tvDetailTitle.setText(data.getTitle());
-        tvDetailSummary.setText(data.getContent());
+        tvSummary.setText(data.getSummary());
+        jzPlayer.setUp(data.getUrl(), JZVideoPlayer.SCREEN_WINDOW_NORMAL);
     }
 
     @OnClick(R.id.ivBack)
     void back() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
         finish();
     }
 
+    @Override
+    public void onBackPressed() {
+        if (JZVideoPlayer.backPress()) {
+            return;
+        }
+        finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JZVideoPlayer.releaseAllVideos();
+    }
 }
