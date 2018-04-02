@@ -29,6 +29,7 @@ import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.base.BaseActivity;
 import com.nkbh.xuexue.bean.ResponseBean;
 import com.nkbh.xuexue.bean.UserBean;
+import com.nkbh.xuexue.dialog.ChangeNameDialog;
 import com.nkbh.xuexue.dialog.ChangePwdDialog;
 import com.nkbh.xuexue.fragment.CommunityFragment;
 import com.nkbh.xuexue.fragment.PlanFragment;
@@ -166,7 +167,18 @@ public class MainActivity extends BaseActivity {
 
     @OnClick(R.id.tvChangeName)
     void changeName() {
-
+        ChangeNameDialog dialog = new ChangeNameDialog(MainActivity.this, currentUser, new ChangeNameDialog.OnNameChanged() {
+            @Override
+            public void nameChanged(String newName) {
+                tvUserName.setText(newName);
+            }
+        });
+        dialog.show();
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.width = (int) (display.getWidth() * 0.9); //设置宽度
+        dialog.getWindow().setAttributes(lp);
     }
 
     @OnClick(R.id.tvChangePwd)
