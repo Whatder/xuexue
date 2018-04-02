@@ -12,7 +12,7 @@ public class TimeUtils {
     public static String stamp2String(long stamp) {
         String time = "";
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
-        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("GMT+:08:00"));
+        simpleDateFormat.setTimeZone(TimeZone.getTimeZone("Asia/Shanghai"));
         time = simpleDateFormat.format(new Date(stamp * 1000));
         return time;
     }
