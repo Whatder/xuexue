@@ -75,6 +75,7 @@ public class PostReplyActivity extends BaseActivity {
     }
 
     private void putReply2Remote(String content) {
+        loadingDialog.show();
         Map<String, String> params = new HashMap<>();
         params.put("author_id", currentUser.getId() + "");
         params.put("topic_id", currentTopic.getId() + "");
@@ -91,6 +92,7 @@ public class PostReplyActivity extends BaseActivity {
 
                     @Override
                     public void onNext(ResponseBean<String> value) {
+                        loadingDialog.dismiss();
                         if ("succ".equals(value.getStatus())) {
                             ToastUtils.show(PostReplyActivity.this, value.getData());
                             finish();
@@ -100,6 +102,7 @@ public class PostReplyActivity extends BaseActivity {
 
                     @Override
                     public void onError(Throwable e) {
+                        loadingDialog.dismiss();
                         ToastUtils.show(PostReplyActivity.this, e.getMessage());
                     }
 

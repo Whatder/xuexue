@@ -69,6 +69,7 @@ public class PostArticleActivity extends BaseActivity {
     }
 
     private void put2Remote(String content) {
+        loadingDialog.show();
         HashMap<String, String> params = new HashMap<>();
         params.put("author_id", currentUser.getId() + "");
         params.put("title", "");
@@ -86,6 +87,7 @@ public class PostArticleActivity extends BaseActivity {
 
                     @Override
                     public void onNext(ResponseBean<String> value) {
+                        loadingDialog.dismiss();
                         if ("succ".equals(value.getStatus())) {
                             ToastUtils.show(PostArticleActivity.this, value.getData());
                             finish();
@@ -95,6 +97,7 @@ public class PostArticleActivity extends BaseActivity {
 
                     @Override
                     public void onError(Throwable e) {
+                        loadingDialog.dismiss();
                         ToastUtils.show(PostArticleActivity.this, e.getMessage());
                     }
 
