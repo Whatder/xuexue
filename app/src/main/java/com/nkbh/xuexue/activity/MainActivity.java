@@ -158,9 +158,9 @@ public class MainActivity extends BaseActivity {
 
             }
         });
-        picker.setShowCamera(true);
-        picker.setSelectLimit(1);
-
+        picker.setShowCamera(false);
+        picker.setMultiMode(false);
+        picker.setCrop(false);
         Intent intent = new Intent(MainActivity.this, ImageGridActivity.class);
         startActivityForResult(intent, IMAGE_PICKER);
     }
