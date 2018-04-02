@@ -32,6 +32,10 @@ public interface ServiceApi {
     Observable<ResponseBean<UserBean>> login(@FieldMap Map<String, String> params);
 
     @FormUrlEncoded
+    @POST("/user/logup")
+    Observable<ResponseBean<String>> logup(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
     @POST("/user/password")
     Observable<ResponseBean<String>> changePwd(@FieldMap Map<String, String> params);
 
