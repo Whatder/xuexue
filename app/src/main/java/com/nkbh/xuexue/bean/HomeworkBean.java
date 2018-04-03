@@ -1,4 +1,4 @@
-package com.nkbh.xuexue.base;
+package com.nkbh.xuexue.bean;
 
 /**
  * Created by User on 2018/3/20.

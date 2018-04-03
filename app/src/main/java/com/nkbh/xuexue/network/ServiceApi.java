@@ -1,7 +1,7 @@
 package com.nkbh.xuexue.network;
 
-import com.nkbh.xuexue.base.CourseBean;
-import com.nkbh.xuexue.base.TopicBean;
+import com.nkbh.xuexue.bean.CourseBean;
+import com.nkbh.xuexue.bean.TopicBean;
 import com.nkbh.xuexue.bean.CommunityReplyBean;
 import com.nkbh.xuexue.bean.PlanBean;
 import com.nkbh.xuexue.bean.ResponseBean;

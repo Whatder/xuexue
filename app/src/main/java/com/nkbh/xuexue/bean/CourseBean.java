@@ -1,4 +1,4 @@
-package com.nkbh.xuexue.base;
+package com.nkbh.xuexue.bean;
 
 import java.io.Serializable;
 

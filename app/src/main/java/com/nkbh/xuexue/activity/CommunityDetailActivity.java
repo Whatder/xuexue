@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.adapter.CommunityReplyAdapter;
 import com.nkbh.xuexue.base.BaseActivity;
-import com.nkbh.xuexue.base.TopicBean;
+import com.nkbh.xuexue.bean.TopicBean;
 import com.nkbh.xuexue.bean.CommunityReplyBean;
 import com.nkbh.xuexue.bean.ResponseBean;
 import com.nkbh.xuexue.network.RetrofitHelper;

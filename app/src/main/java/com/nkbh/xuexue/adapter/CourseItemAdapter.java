@@ -16,9 +16,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.CourseDetailActivity;
-import com.nkbh.xuexue.base.CourseBean;
+import com.nkbh.xuexue.bean.CourseBean;
 
-import java.io.Serializable;
 import java.util.List;
 
 import butterknife.BindView;

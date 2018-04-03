@@ -1,7 +1,6 @@
 package com.nkbh.xuexue.fragment;
 
 import android.content.Intent;
-import android.graphics.Rect;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -9,7 +8,6 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -17,12 +15,11 @@ import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.PostArticleActivity;
 import com.nkbh.xuexue.adapter.TopicAdapter;
 import com.nkbh.xuexue.base.BaseFragment;
-import com.nkbh.xuexue.base.TopicBean;
+import com.nkbh.xuexue.bean.TopicBean;
 import com.nkbh.xuexue.bean.ResponseBean;
 import com.nkbh.xuexue.bean.UserBean;
 import com.nkbh.xuexue.network.RetrofitHelper;
 import com.nkbh.xuexue.network.ServiceApi;
-import com.nkbh.xuexue.utils.DmUtils;
 import com.nkbh.xuexue.utils.ToastUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;

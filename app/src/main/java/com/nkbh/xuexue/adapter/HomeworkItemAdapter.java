@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
-import com.nkbh.xuexue.base.HomeworkBean;
+import com.nkbh.xuexue.bean.HomeworkBean;
 
 import java.util.List;
 

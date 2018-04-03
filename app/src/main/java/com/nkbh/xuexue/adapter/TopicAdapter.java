@@ -16,14 +16,13 @@ import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.activity.CommunityDetailActivity;
 import com.nkbh.xuexue.activity.PostReplyActivity;
-import com.nkbh.xuexue.base.TopicBean;
+import com.nkbh.xuexue.bean.TopicBean;
 import com.nkbh.xuexue.utils.TimeUtils;
 
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 /**

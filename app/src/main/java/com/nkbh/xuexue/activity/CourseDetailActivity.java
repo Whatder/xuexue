@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.base.BaseActivity;
-import com.nkbh.xuexue.base.CourseBean;
+import com.nkbh.xuexue.bean.CourseBean;
 
 import butterknife.BindView;
 import butterknife.OnClick;

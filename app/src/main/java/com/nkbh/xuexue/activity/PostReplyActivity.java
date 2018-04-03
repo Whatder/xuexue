@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.base.BaseActivity;
-import com.nkbh.xuexue.base.TopicBean;
+import com.nkbh.xuexue.bean.TopicBean;
 import com.nkbh.xuexue.bean.ResponseBean;
 import com.nkbh.xuexue.bean.UserBean;
 import com.nkbh.xuexue.network.RetrofitHelper;
