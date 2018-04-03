@@ -40,8 +40,8 @@ public class TopicItemAdapter extends RecyclerView.Adapter<TopicItemAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(mContext).load(data.get(position).getProfile_pic()).into(holder.ivPic);
-        holder.tvAuthor.setText(data.get(position).getName());
-        holder.tvContent.setText(data.get(position).getContent());
+        holder.tvAuthor.setText("作者：" + data.get(position).getName());
+        holder.tvContent.setText("内容：" + data.get(position).getContent());
     }
 
     @Override

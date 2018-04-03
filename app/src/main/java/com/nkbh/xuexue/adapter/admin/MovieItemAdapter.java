@@ -40,8 +40,8 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(mContext).load(data.get(position).getThumbnail()).into(holder.ivPic);
-        holder.tvName.setText(data.get(position).getTitle());
-        holder.tvSummary.setText(data.get(position).getSummary());
+        holder.tvName.setText("标题：" + data.get(position).getTitle());
+        holder.tvSummary.setText("简介：" + data.get(position).getSummary());
     }
 
     @Override

@@ -40,8 +40,8 @@ public class UserItemAdapter extends RecyclerView.Adapter<UserItemAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(mContext).load(data.get(position).getProfile_pic()).into(holder.ivPic);
-        holder.tvAccount.setText(data.get(position).getAccount());
-        holder.tvName.setText(data.get(position).getName());
+        holder.tvAccount.setText("用户名：" + data.get(position).getAccount());
+        holder.tvName.setText("昵称：" + data.get(position).getName());
     }
 
     @Override
