@@ -1,11 +1,12 @@
 package com.nkbh.xuexue.network;
 
-import com.nkbh.xuexue.bean.CourseBean;
-import com.nkbh.xuexue.bean.TopicBean;
 import com.nkbh.xuexue.bean.CommunityReplyBean;
+import com.nkbh.xuexue.bean.CourseBean;
 import com.nkbh.xuexue.bean.PlanBean;
 import com.nkbh.xuexue.bean.ResponseBean;
+import com.nkbh.xuexue.bean.TopicBean;
 import com.nkbh.xuexue.bean.UserBean;
+import com.nkbh.xuexue.bean.admin.Admin;
 
 import java.util.List;
 import java.util.Map;
@@ -82,4 +83,10 @@ public interface ServiceApi {
     @Multipart
     @POST("upload/profile_pic")
     Observable<ResponseBean<String>> updateProfilePic(@Part List<MultipartBody.Part> file);
+
+    //管理员模块接口----------------------------------------
+    @FormUrlEncoded
+    @POST("/admin/login")
+    Observable<ResponseBean<Admin>> adminLogin(@FieldMap Map<String, String> params);
+
 }

@@ -28,6 +28,9 @@
         <activity android:name=".activity.AddPlanActivity" />
         <activity android:name=".activity.CommunityDetailActivity" />
         <activity android:name=".activity.PostReplyActivity" />
+
+        <activity android:name=".activity.AdminLoginActivity" />
+        <activity android:name=".activity.AdminManagerActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />
