@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp">
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivPic"
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_marginRight="16dp"
+        android:scaleType="centerCrop"
+        tools:src="@color/colorAccent" />
+
+    <TextView
+        android:id="@+id/tvAuthor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="54dp"
+        android:layout_toRightOf="@id/ivPic"
+        android:maxLines="1"
+        android:textColor="@color/textBlack"
+        android:textSize="14sp"
+        tools:text="名称" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvAuthor"
+        android:layout_marginRight="54dp"
+        android:layout_marginTop="10dp"
+        android:layout_toRightOf="@id/ivPic"
+        android:maxLines="2"
+        android:textColor="@color/textBlack"
+        android:textSize="14sp"
+        tools:text="内容" />
+
+    <TextView
+        android:id="@+id/tvDel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/bg_btn_rect_red"
+        android:padding="4dp"
+        android:text="删除"
+        android:textColor="@color/colorRed"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@id/ivPic"
+        android:layout_marginTop="15dp"
+        android:background="@color/colorDivider" />
+</RelativeLayout>

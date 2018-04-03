@@ -91,4 +91,7 @@ public interface ServiceApi {
 
     @GET("user/all")
     Observable<ResponseBean<List<UserBean>>> getAllUser();
+
+    @GET("reply/all")
+    Observable<ResponseBean<List<CommunityReplyBean>>> getAllReply();
 }
