@@ -89,4 +89,6 @@ public interface ServiceApi {
     @POST("/admin/login")
     Observable<ResponseBean<Admin>> adminLogin(@FieldMap Map<String, String> params);
 
+    @GET("user/all")
+    Observable<ResponseBean<List<UserBean>>> getAllUser();
 }
