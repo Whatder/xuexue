@@ -89,9 +89,14 @@ public interface ServiceApi {
     @POST("/admin/login")
     Observable<ResponseBean<Admin>> adminLogin(@FieldMap Map<String, String> params);
 
-    @GET("user/all")
+    @GET("/user/all")
     Observable<ResponseBean<List<UserBean>>> getAllUser();
 
-    @GET("reply/all")
+    @GET("/reply/all")
     Observable<ResponseBean<List<CommunityReplyBean>>> getAllReply();
+
+    @FormUrlEncoded
+    @POST("/admin/password")
+    Observable<ResponseBean<String>> changePwdAdmin(@FieldMap Map<String, String> params);
+
 }

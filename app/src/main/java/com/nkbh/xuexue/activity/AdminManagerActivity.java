@@ -5,13 +5,16 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.view.Display;
 import android.view.Gravity;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.base.BaseActivity;
 import com.nkbh.xuexue.bean.admin.Admin;
+import com.nkbh.xuexue.dialog.AdminChangePwdDialog;
 import com.nkbh.xuexue.fragment.AdminMovieManagerFragment;
 import com.nkbh.xuexue.fragment.AdminReplyManagerFragment;
 import com.nkbh.xuexue.fragment.AdminTopicManagerFragment;
@@ -107,6 +110,13 @@ public class AdminManagerActivity extends BaseActivity {
 
     @OnClick(R.id.tvChangePwd)
     public void onTvChangePwdClicked() {
+        AdminChangePwdDialog dialog = new AdminChangePwdDialog(AdminManagerActivity.this, currAdmin);
+        dialog.show();
+        WindowManager windowManager = getWindowManager();
+        Display display = windowManager.getDefaultDisplay();
+        WindowManager.LayoutParams lp = dialog.getWindow().getAttributes();
+        lp.width = (int) (display.getWidth() * 0.9); //设置宽度
+        dialog.getWindow().setAttributes(lp);
     }
 
     @OnClick(R.id.tvLogOut)
