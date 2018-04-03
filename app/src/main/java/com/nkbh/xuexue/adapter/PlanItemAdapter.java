@@ -53,20 +53,19 @@ public class PlanItemAdapter extends RecyclerView.Adapter<PlanItemAdapter.ViewHo
         holder.viewStatus.setBackgroundColor("FINISH".equals(data.get(position).getStatus())
                 ? context.getResources().getColor(R.color.colorGreen)
                 : context.getResources().getColor(R.color.colorAccent));
-
-        if ("UNFINISH".equals(data.get(position).getStatus()))
-            holder.planItem.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    PlanDetailDialog dialog = new PlanDetailDialog(context, data.get(position), new PlanDetailDialog.Listener() {
-                        @Override
-                        public void onStatusChanged() {
-                            listener.onStatusChanged();
-                        }
-                    });
-                    dialog.show();
-                }
-            });
+        holder.planItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PlanDetailDialog dialog = new PlanDetailDialog(context, data.get(position), new PlanDetailDialog.Listener() {
+                    @Override
+                    public void onStatusChanged() {
+                        listener.onStatusChanged();
+                    }
+                });
+                dialog.show();
+                dialog.setCanFinish("UNFINISH".equals(data.get(position).getStatus()));
+            }
+        });
     }
 
     @Override

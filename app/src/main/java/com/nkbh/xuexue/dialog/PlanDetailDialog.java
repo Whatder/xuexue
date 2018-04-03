@@ -100,6 +100,49 @@ public class PlanDetailDialog extends Dialog {
                 });
     }
 
+    @OnClick(R.id.btnGiveUp)
+    void giveUp() {
+        Map<String, String> params = new HashMap<>();
+        params.put("id", mData.getId() + "");
+        ServiceApi service = RetrofitHelper.getService();
+        service.delPlan(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBean<String> value) {
+                        if ("succ".equals(value.getStatus())) {
+                            listener.onStatusChanged();
+                            ToastUtils.show(mContext, value.getData());
+                            dismiss();
+                        } else
+                            ToastUtils.show(mContext, value.getMsg());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ToastUtils.show(mContext, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    public void setCanFinish(boolean flag) {
+        btnComplete.setText(flag ? "完成" : "已完成");
+        btnComplete.setEnabled(flag);
+        if (!flag)
+            btnComplete.setBackgroundColor(mContext.getResources().getColor(R.color.textGrey));
+    }
+
     public interface Listener {
         void onStatusChanged();
     }

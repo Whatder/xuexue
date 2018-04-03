@@ -54,6 +54,10 @@ public interface ServiceApi {
     @POST("/plan/update")
     Observable<ResponseBean<String>> updatePlan(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("/plan/del")
+    Observable<ResponseBean<String>> delPlan(@FieldMap Map<String, String> params);
+
     @GET("/topic")
     Observable<ResponseBean<List<TopicBean>>> getTopic();
 
