@@ -55,7 +55,6 @@ public class AdminUserManagerFragment extends BaseFragment {
                 getData(refreshLayout);
             }
         });
-        refreshLayout.setEnableLoadMore(false);
     }
 
     private void getData(final RefreshLayout refreshLayout) {
