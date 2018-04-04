@@ -99,4 +99,12 @@ public interface ServiceApi {
     @POST("/admin/password")
     Observable<ResponseBean<String>> changePwdAdmin(@FieldMap Map<String, String> params);
 
+    @FormUrlEncoded
+    @POST("/topic/del")
+    Observable<ResponseBean<String>> delTopic(@FieldMap Map<String, String> params);
+
+    @FormUrlEncoded
+    @POST("/reply/del")
+    Observable<ResponseBean<String>> delReply(@FieldMap Map<String, String> params);
+
 }

@@ -15,7 +15,9 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import io.reactivex.Observer;
@@ -43,7 +45,12 @@ public class AdminTopicManagerFragment extends BaseFragment {
 
     @Override
     protected void initParameter() {
-        adapter = new TopicItemAdapter(mActivity, data);
+        adapter = new TopicItemAdapter(mActivity, data, new TopicItemAdapter.OnDeleteClick() {
+            @Override
+            public void OnDeleted(TopicBean topicBean) {
+                delTopic(topicBean.getId());
+            }
+        });
         rvManager.setLayoutManager(new LinearLayoutManager(mActivity));
         rvManager.setAdapter(adapter);
         getData(null);
@@ -85,5 +92,42 @@ public class AdminTopicManagerFragment extends BaseFragment {
                     }
                 });
 
+    }
+
+    private void delTopic(int id) {
+        loadingDialog.show();
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id + "");
+        ServiceApi service = RetrofitHelper.getService();
+        service.delTopic(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBean<String> value) {
+                        loadingDialog.dismiss();
+                        if ("succ".equals(value.getStatus())) {
+                            ToastUtils.show(mActivity, value.getData());
+                            getData(null);
+                        } else
+                            ToastUtils.show(mActivity, value.getMsg());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        loadingDialog.dismiss();
+                        ToastUtils.show(mActivity, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

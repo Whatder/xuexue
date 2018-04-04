@@ -25,10 +25,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class TopicItemAdapter extends RecyclerView.Adapter<TopicItemAdapter.ViewHolder> {
     private Context mContext;
     private List<TopicBean> data;
+    private OnDeleteClick click;
 
-    public TopicItemAdapter(Context mContext, List<TopicBean> data) {
+    public TopicItemAdapter(Context mContext, List<TopicBean> data, OnDeleteClick click) {
         this.mContext = mContext;
         this.data = data;
+        this.click = click;
     }
 
     @NonNull
@@ -38,10 +40,16 @@ public class TopicItemAdapter extends RecyclerView.Adapter<TopicItemAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(mContext).load(data.get(position).getProfile_pic()).into(holder.ivPic);
         holder.tvAuthor.setText("作者：" + data.get(position).getName());
         holder.tvContent.setText("内容：" + data.get(position).getContent());
+        holder.tvDel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                click.OnDeleted(data.get(position));
+            }
+        });
     }
 
     @Override
@@ -63,5 +71,9 @@ public class TopicItemAdapter extends RecyclerView.Adapter<TopicItemAdapter.View
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface OnDeleteClick {
+        void OnDeleted(TopicBean topicBean);
     }
 }
