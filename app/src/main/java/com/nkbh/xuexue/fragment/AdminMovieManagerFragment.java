@@ -107,4 +107,10 @@ public class AdminMovieManagerFragment extends BaseFragment {
         Intent intent = new Intent(mActivity, AdminAddMovieActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getData(null);
+    }
 }

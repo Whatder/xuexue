@@ -107,4 +107,8 @@ public interface ServiceApi {
     @POST("/reply/del")
     Observable<ResponseBean<String>> delReply(@FieldMap Map<String, String> params);
 
+    @Multipart
+    @POST("upload/movie")
+    Observable<ResponseBean<String>> updateMovie(@Part List<MultipartBody.Part> file);
+
 }

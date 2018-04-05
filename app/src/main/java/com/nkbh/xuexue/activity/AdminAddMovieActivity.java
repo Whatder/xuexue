@@ -19,13 +19,25 @@ import com.lzy.imagepicker.loader.ImageLoader;
 import com.lzy.imagepicker.ui.ImageGridActivity;
 import com.nkbh.xuexue.R;
 import com.nkbh.xuexue.base.BaseActivity;
+import com.nkbh.xuexue.bean.ResponseBean;
+import com.nkbh.xuexue.network.RetrofitHelper;
+import com.nkbh.xuexue.network.ServiceApi;
 import com.nkbh.xuexue.utils.StringUtils;
 import com.nkbh.xuexue.utils.ToastUtils;
 
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 /**
  * Created by User on 2018/4/5.
@@ -102,7 +114,50 @@ public class AdminAddMovieActivity extends BaseActivity {
 
 
     private void save2Remote() {
+        loadingDialog.show();
+        File image = new File(thumbPath);
+        File video = new File(videoPath);
+        MultipartBody.Builder build = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM);
+        RequestBody imageBody = RequestBody.create(MediaType.parse("multipart/form-data"), image);
+        RequestBody videoBody = RequestBody.create(MediaType.parse("multipart/form-data"), video);
 
+        build.addFormDataPart("image", image.getName(), imageBody);
+        build.addFormDataPart("file", video.getName(), videoBody);
+        build.addFormDataPart("title", srcTitle);
+        build.addFormDataPart("summary", srcSummary);
+        List<MultipartBody.Part> part = build.build().parts();
+
+        ServiceApi service = RetrofitHelper.getService();
+        service.updateMovie(part)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                    }
+
+                    @Override
+                    public void onNext(ResponseBean<String> value) {
+                        loadingDialog.dismiss();
+                        if ("succ".equals(value.getStatus())) {
+                            ToastUtils.show(AdminAddMovieActivity.this, value.getData());
+                            finish();
+                        } else
+                            ToastUtils.show(AdminAddMovieActivity.this, value.getMsg());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        loadingDialog.dismiss();
+                        ToastUtils.show(AdminAddMovieActivity.this, e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 
 
