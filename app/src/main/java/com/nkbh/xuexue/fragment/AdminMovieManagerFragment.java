@@ -1,5 +1,6 @@
 package com.nkbh.xuexue.fragment;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,6 +8,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.nkbh.xuexue.R;
+import com.nkbh.xuexue.activity.AdminAddMovieActivity;
 import com.nkbh.xuexue.adapter.admin.MovieItemAdapter;
 import com.nkbh.xuexue.base.BaseFragment;
 import com.nkbh.xuexue.bean.CourseBean;
@@ -102,5 +104,7 @@ public class AdminMovieManagerFragment extends BaseFragment {
 
     @OnClick(R.id.fabAdd)
     public void onViewClicked() {
+        Intent intent = new Intent(mActivity, AdminAddMovieActivity.class);
+        startActivity(intent);
     }
 }

@@ -31,6 +31,7 @@
 
         <activity android:name=".activity.AdminLoginActivity" />
         <activity android:name=".activity.AdminManagerActivity" />
+        <activity android:name=".activity.AdminAddMovieActivity" />
     </application>
 
     <uses-permission android:name="android.permission.INTERNET" />

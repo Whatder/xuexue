@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rlHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/ivBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:src="@drawable/icon_arrow_left" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/ivBack"
+            android:text="添加视频"
+            android:textColor="@color/white"
+            android:textSize="20sp" />
+
+        <ImageView
+            android:id="@+id/tvSave"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:padding="16dp"
+            android:src="@drawable/icon_save" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/ivThumb"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginBottom="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@drawable/bg_btn_rect_black"
+            android:scaleType="centerCrop"
+            android:src="@drawable/icon_add_grey" />
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/ivThumb">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/etSrcTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="添加标题"
+                android:textColor="@color/colorAccent"
+                android:textColorHint="@color/colorAccent" />
+        </android.support.design.widget.TextInputLayout>
+
+
+        <Button
+            android:id="@+id/btnGetFilePath"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:layout_alignParentRight="true"
+            android:layout_below="@id/ivThumb"
+            android:background="@color/colorPrimary"
+            android:padding="4dp"
+            android:text="选择视频文件"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tvFilePath"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@id/ivThumb"
+            android:layout_marginTop="8dp"
+            android:layout_toLeftOf="@id/btnGetFilePath"
+            android:ellipsize="end"
+            android:maxEms="16"
+            android:maxLines="1"
+            android:text="未选择视频文件"
+            android:textColor="@color/textBlack"
+            android:textSize="14sp" />
+
+        <View
+            android:id="@+id/divLine"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@id/btnGetFilePath"
+            android:layout_marginBottom="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorDivider" />
+
+        <EditText
+            android:id="@+id/etSummary"
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:layout_below="@id/divLine"
+            android:background="@drawable/bg_btn_rect_black"
+            android:gravity="top"
+            android:padding="10dp"
+            android:textColor="@color/textBlack"
+            android:textSize="16sp" />
+    </RelativeLayout>
+
+</LinearLayout>
