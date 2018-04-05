@@ -1,6 +1,6 @@
 package com.nkbh.xuexue.fragment;
 
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
@@ -57,15 +57,15 @@ public class StudyFragment extends BaseFragment {
     @Override
     protected void initParameter() {
         courseItemAdapter = new CourseItemAdapter(mActivity, courseBeans);
-        rvCourseList.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
+        rvCourseList.setLayoutManager(new GridLayoutManager(mActivity, 2));
         rvCourseList.setAdapter(courseItemAdapter);
 
-        homeworkItemAdapter = new HomeworkItemAdapter(mActivity, homeworkBeans);
-        rvHomeworkList.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
-        rvHomeworkList.setAdapter(homeworkItemAdapter);
+//        homeworkItemAdapter = new HomeworkItemAdapter(mActivity, homeworkBeans);
+//        rvHomeworkList.setLayoutManager(new LinearLayoutManager(mActivity, LinearLayoutManager.HORIZONTAL, false));
+//        rvHomeworkList.setAdapter(homeworkItemAdapter);
 
         getCourseData();
-        getHomeworkData();
+//        getHomeworkData();
     }
 
     private void getCourseData() {
