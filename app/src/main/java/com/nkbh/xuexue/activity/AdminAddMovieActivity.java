@@ -192,7 +192,7 @@ public class AdminAddMovieActivity extends BaseActivity {
                 ToastUtils.show(AdminAddMovieActivity.this, "没有选择图片");
             }
         }
-        if (requestCode == VIDEO_PICKER) {
+        if (data != null && requestCode == VIDEO_PICKER) {
             ArrayList<EssFile> essFileList = data.getParcelableArrayListExtra(Const.EXTRA_RESULT_SELECTION);
             videoPath = essFileList.get(0).getAbsolutePath();
             tvFilePath.setText("选择了：" + essFileList.get(0).getAbsolutePath());
