@@ -25,10 +25,12 @@ import butterknife.ButterKnife;
 public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.ViewHolder> {
     private Context mContext;
     private List<CourseBean> data;
+    private OnClickListener listener;
 
-    public MovieItemAdapter(Context mContext, List<CourseBean> data) {
+    public MovieItemAdapter(Context mContext, List<CourseBean> data, OnClickListener listener) {
         this.mContext = mContext;
         this.data = data;
+        this.listener = listener;
     }
 
     @NonNull
@@ -38,10 +40,16 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         Glide.with(mContext).load(data.get(position).getThumbnail()).into(holder.ivPic);
         holder.tvName.setText("标题：" + data.get(position).getTitle());
         holder.tvSummary.setText("简介：" + data.get(position).getSummary());
+        holder.tvEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                listener.OnDel(data.get(position));
+            }
+        });
     }
 
     @Override
@@ -63,5 +71,9 @@ public class MovieItemAdapter extends RecyclerView.Adapter<MovieItemAdapter.View
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface OnClickListener {
+        void OnDel(CourseBean data);
     }
 }

@@ -21,7 +21,9 @@ import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.OnClick;
@@ -52,7 +54,12 @@ public class AdminMovieManagerFragment extends BaseFragment {
 
     @Override
     protected void initParameter() {
-        adapter = new MovieItemAdapter(mActivity, data);
+        adapter = new MovieItemAdapter(mActivity, data, new MovieItemAdapter.OnClickListener() {
+            @Override
+            public void OnDel(CourseBean data) {
+                delMovieById(data.getId());
+            }
+        });
         rvManager.setLayoutManager(new LinearLayoutManager(mActivity));
         rvManager.setAdapter(adapter);
         getData(null);
@@ -93,6 +100,45 @@ public class AdminMovieManagerFragment extends BaseFragment {
                         ToastUtils.show(mActivity, e.getMessage());
                         if (refreshLayout != null)
                             refreshLayout.finishRefresh();
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    private void delMovieById(int id) {
+        loadingDialog.show();
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id + "");
+        ServiceApi service = RetrofitHelper.getService();
+        service.delMovie(params)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ResponseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ResponseBean<String> value) {
+                        loadingDialog.dismiss();
+                        if ("succ".equals(value.getStatus()))
+                            ToastUtils.show(mActivity, value.getData());
+
+                        else
+                            ToastUtils.show(mActivity, value.getMsg());
+
+                        getData(null);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        loadingDialog.dismiss();
+                        ToastUtils.show(mActivity, e.getMessage());
                     }
 
                     @Override

@@ -111,4 +111,8 @@ public interface ServiceApi {
     @POST("upload/movie")
     Observable<ResponseBean<String>> updateMovie(@Part List<MultipartBody.Part> file);
 
+    @FormUrlEncoded
+    @POST("/movie/del")
+    Observable<ResponseBean<String>> delMovie(@FieldMap Map<String, String> params);
+
 }
